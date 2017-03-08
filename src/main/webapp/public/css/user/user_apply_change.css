@@ -1,0 +1,14 @@
+.odd{
+    background: #FFF;
+  }
+  .even{
+    background: #F6F6F6;
+  }
+  .selected {
+    background-color: #4AA5CE;
+  }
+  .selected:hover {
+
+    background-color: #08C;
+  }
+

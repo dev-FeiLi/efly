@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.manager_equi.persistence.EquiInfoDao">
+
+	<select id="getEquiInfo" resultType="com.dhc.eggsfly.manager_equi.domain.EquiInfo">
+
+		SELECT
+		mei.equipment_name ,
+		mei.room_id,
+		mei.equipment_amount
+		FROM
+		manage_equipment_information mei
+
+
+	</select>
+
+	<select id="getEquiAmount" resultType="com.dhc.eggsfly.manager_equi.domain.EquiInfo">
+
+		SELECT
+		mei.equipment_amount
+
+		FROM
+		manage_equipment_information mei
+
+		WHERE
+		room_id=#{room_id}
+		AND equipment_id = #{equipment_id}
+	</select>
+
+	<update id="updateEquiInfo" parameterType="com.dhc.eggsfly.manager_equi.domain.EquiInfo">
+		<!-- <foreach collection="list" item="item" index="index" separator=";"> -->
+		UPDATE
+		manage_equipment_information
+
+		SET
+		equipment_amount = #{equipment_amount}
+
+		WHERE
+		equipment_id = #{equipment_id}
+		AND room_id = #{room_id}
+		<!-- </foreach> -->
+	</update>
+
+</mapper>

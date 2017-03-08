@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.user_info.persistence.UserInfoDao">
+
+<select id="getUserInfo" parameterType="String" resultType="com.dhc.eggsfly.user_info.domain.UserInfo">
+
+    SELECT 
+    user_id,
+    user_name,
+    phone_number,
+    group_name,
+    email
+   
+    FROM
+    user_information
+    
+    WHERE
+    user_id=#{user_id}
+
+</select>
+
+
+<update id="updateUserInfo" parameterType="com.dhc.eggsfly.user_info.domain.UserInfo">
+
+    UPDATE
+    user_information
+    
+    SET
+    phone_number=#{phone_number},
+    group_name=#{group_name}
+    
+    WHERE
+    user_id=#{user_id}
+
+</update>
+
+</mapper>

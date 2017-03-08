@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.index.persistence.UserIndexDao">
+    <select id="getAllAppoinments" resultType="appointment">
+        SELECT 
+            id,description,location,subject,calendar, start,end,resizable,draggable,readonly AS readOnly
+        FROM 
+            appointment  order by calendar  
+    </select>
+        
+    <insert id="addSingleAppointment" parameterType="personalAppointment">
+        INSERT INTO appointment(user_id,location,subject,calendar,start,end,
+        theme_id, room_id,resizable,draggable,readonly)
+        VALUES(#{user_id},
+               #{description},
+               #{subject},
+               #{calendar},
+               #{start},
+               #{end},
+               1,
+               2,
+               0,
+               0,
+               1)
+    </insert>
+    
+</mapper>

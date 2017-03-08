@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.login.persistence.UserDao">
+    <select id="selectByUserName" parameterType="String" resultType="UserLoginInfo">
+    SELECT 
+        user_name,
+        password,
+        email
+    FROM
+        user_information
+    WHERE 
+        user_name=#{userName}      
+    </select>
+    
+    <select id="selectByUserId" parameterType="int" resultType="UserLoginInfo">
+    SELECT 
+        user_id,
+        user_name,
+        password,
+        email
+    FROM
+        user_information
+    WHERE
+        user_id=#{userId}    
+    </select>
+
+</mapper>

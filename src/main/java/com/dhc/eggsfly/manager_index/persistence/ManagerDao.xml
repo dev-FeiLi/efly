@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.manager_index.persistence.ManagerDao" >
+    <select id="selectAppointment"   resultType="com.dhc.eggsfly.manager_index.domain.Manager">
+      SELECT 
+          id,user_name,description,meeting_theme_name,subject,calendar,start,end
+      FROM 
+          user_information,appointment,theme_information
+      WHERE 
+          user_information.user_id=appointment.user_id
+          AND theme_information.meeting_theme_id=appointment.theme_id
+          order by calendar
+    </select>
+   <delete id="deleteAppointment"  parameterType="com.dhc.eggsfly.manager_index.domain.Manager" >
+       DELETE
+       FROM appointment
+       WHERE id=#{id}
+    </delete> 
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.managerReservation.persistence.ManagerReservationDao" >
+    <select id="select" resultType="com.dhc.eggsfly.managerReservation.domain.ManagerReservation">
+        SELECT
+            u.user_id AS userId,
+        	u.user_name AS userName,
+            a.start AS startTime,
+            a.end AS endTime,
+            a.id AS orderId,
+            a.description AS description,
+            a.subject AS subject,
+            a.room_id AS roomId,
+            a.calendar AS roomName 
+        FROM appointment a,user_information u 
+        WHERE u.user_id = a.user_id 
+    </select>
+    
+    <select id="searchWidthCondition" parameterType="com.dhc.eggsfly.managerReservation.domain.SearchCondition" resultType="com.dhc.eggsfly.managerReservation.domain.ManagerReservation">
+        <![CDATA[
+        SELECT
+            u.user_id AS userId,
+        	u.user_name AS userName,
+            a.start AS startTime,
+            a.end AS endTime,
+            a.id AS orderId,
+            a.description AS description,
+            a.subject AS subject,
+            a.room_id AS roomId,
+            a.calendar AS roomName 
+        FROM appointment a,user_information u 
+        WHERE u.user_id = a.user_id 
+        AND a.calendar = #{calendar} 
+        AND DATE(a.start) > STR_TO_DATE(#{start}, '%d/%m/%Y') 
+        AND DATE(a.end) < STR_TO_DATE( #{end}, '%d/%m/%Y')
+        ]]>
+    </select>
+    
+    <delete id="delete" parameterType="com.dhc.eggsfly.managerReservation.domain.ManagerReservation">
+        DELETE
+        FROM appointment
+        WHERE user_id = #{userId} and id = #{orderId}
+    </delete>
+    
+</mapper>

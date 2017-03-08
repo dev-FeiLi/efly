@@ -1,0 +1,18 @@
+  header {
+    background-image: url('image/000.jpg');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+  }
+  body {
+      background-image: url('image/111.jpg');
+      background-size: 100% auto;
+    }
+  .btn-primary {
+      background-color: #037097;
+    }
+  .toolbar {
+   float: left;
+  }
+  .btn-prink {
+    background-color: #CC8080;
+  }

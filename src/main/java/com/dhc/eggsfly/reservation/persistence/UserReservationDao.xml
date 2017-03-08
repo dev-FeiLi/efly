@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhc.eggsfly.reservation.persistence.UserReservationDao" >
+    <select id="select" parameterType="String" resultType="com.dhc.eggsfly.reservation.domain.UserReservation">
+        SELECT
+            a.id AS orderId,
+            a.calendar AS roomName,
+            a.start AS startTime,
+            a.end AS endTime,
+            a.subject AS meetingThemeName,
+            a.description AS description 
+        FROM appointment a 
+        WHERE a.user_id = #{userId}
+    </select>
+    
+    <delete id="delete" parameterType="com.dhc.eggsfly.reservation.domain.UserReservation">
+        DELETE
+        FROM appointment
+        WHERE user_id = #{userId} and id = #{orderId}
+    </delete>
+</mapper>
